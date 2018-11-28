@@ -1,7 +1,8 @@
 import React from 'react';
 import mapAPIkey from '../../CREDS.js';
+import GoogleMapReact from 'google-map-react';
 
-class AppContainer extends Component {
+class AppContainer extends React.Component {
 	static defaultProps = {
 	    center: {
 	      lat: 59.95,
@@ -11,7 +12,7 @@ class AppContainer extends Component {
 	};
  
   	render() {
-	  	return {
+	  	return (
 		  	<div style={{ height: '100vh', width: '100%' }}>
 			    <GoogleMapReact
 			      bootstrapURLKeys={{ key: mapAPIkey }}
@@ -20,7 +21,7 @@ class AppContainer extends Component {
 			    >
 			    </GoogleMapReact>
 			 </div>
-		};
+		);
 	}
 }
 
