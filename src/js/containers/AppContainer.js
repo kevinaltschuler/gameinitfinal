@@ -1,6 +1,21 @@
 import React from 'react';
+import Modal from 'react-modal';
+
 import MapView from './../components/MapView';
 import generateCollectables from './../components/generateCollectables';
+
+Modal.setAppElement('#root');
+
+const modalStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 class AppContainer extends React.Component {
 	constructor(props) {
@@ -9,12 +24,23 @@ class AppContainer extends React.Component {
 		this.state = {
 			center: {lat: 0, lng: 0},
 			zoom: 11,
-			collectables: []
+			collectables: [],
+			modalIsOpen: false
 		}
 
 		this.onKey = this.onKey.bind(this);
 		this.setInitialLocation = this.setInitialLocation.bind(this);
+		this.openModal = this.openModal.bind(this);
+	    this.closeModal = this.closeModal.bind(this);
 		document.onkeydown = this.onKey;
+	}
+
+	openModal() {
+	    this.setState({modalIsOpen: true});
+	}
+
+	closeModal() {
+	    this.setState({modalIsOpen: false});
 	}
 
 	onKey(e) {
@@ -56,8 +82,12 @@ class AppContainer extends React.Component {
 			const c = this.state.collectables[i];
 			if (distance(center.lat, center.lng, c.lat, c.lng) < 0.02) {
 				this.state.collectables.splice(i, 1);
-				this.setState({ center: this.state.center, collectables: this.state.collectables})
+				this.setState({ ...this.state, collectables: this.state.collectables})
 			}
+		}
+
+		if(this.state.collectables.length <= 0) {
+			this.openModal();
 		}
 	}
 
@@ -82,7 +112,20 @@ class AppContainer extends React.Component {
 	    	return <div style={{width: '100%', padding: '200px 50%'}}>loading</div>;
 	    }
 	  	return (
-		  	<MapView center={this.state.center} collectables={this.state.collectables} />
+	  		<div>
+	  			<Modal
+		          isOpen={this.state.modalIsOpen}
+		          onRequestClose={this.closeModal}
+		          style={modalStyles}
+		          contentLabel="Example Modal"
+		        >
+
+		          <h2>Youve Done it!</h2>
+		          <div>here is your clue: CLUE 1</div>
+		          <button onClick={this.closeModal}>close</button>
+		        </Modal>
+		  		<MapView center={this.state.center} collectables={this.state.collectables} />
+		  	</div>
 		);
 	}
 }

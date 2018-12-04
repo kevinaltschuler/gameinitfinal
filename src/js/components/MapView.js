@@ -12,7 +12,7 @@ class MapView extends React.Component {
 	      lat: 0,
 	      lng: 0
 	    },
-	    zoom: 11
+	    zoom: 15
 	};
 
   	render() {
