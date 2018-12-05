@@ -1,6 +1,7 @@
 import React from 'react';
+let mapAPIkey;
 try {
-	const mapAPIkey = require('../../CREDS.js');
+	mapAPIkey = require('../../CREDS.js').default;
 } catch (ex) {
     console.log(ex, 'no creds file so using env var');
 }
@@ -26,6 +27,8 @@ class MapView extends React.Component {
 	    }
 
 	    const key = mapAPIkey || process.env.GOOGLEMAPSAPIKEY;
+
+	    console.log(key);
 
 	  	return (
 		  	<div style={{ height: '100vh', width: '100%' }}>
