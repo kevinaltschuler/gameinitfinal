@@ -24,7 +24,7 @@ class MapView extends React.Component {
 	  	return (
 		  	<div style={{ height: '100vh', width: '100%' }}>
 			    <GoogleMapReact
-			      bootstrapURLKeys={{ key: mapAPIkey }}
+			      bootstrapURLKeys={{ key: mapAPIkey || process.env.GOOGLEMAPSAPIKEY }}
 			      center={this.props.center}
 			      zoom={this.props.zoom}
 			      options={{styles: styles}}
