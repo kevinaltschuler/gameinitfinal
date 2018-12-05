@@ -1,5 +1,9 @@
 import React from 'react';
-import mapAPIkey from '../../CREDS.js';
+try {
+	import mapAPIkey from '../../CREDS.js';
+} catch (ex) {
+    console.log(ex, 'no creds file so using env var');
+}
 import GoogleMapReact from 'google-map-react';
 import styles from './styles.js';
 import Collectable from './Collectable';
