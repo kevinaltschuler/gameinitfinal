@@ -5,7 +5,8 @@ const webpack = require('webpack');
 config.plugins.push(
   new webpack.DefinePlugin({
     "process.env": {
-      "NODE_ENV": JSON.stringify("production")
+      "NODE_ENV": JSON.stringify("production"),
+      "GOOGLEMAPSAPIKEY": process.env.GOOGLEMAPSAPIKEY
     }
   })
 );
@@ -17,13 +18,5 @@ config.plugins.push(
     }
   })
 );
-
-config.plugins.push({
-  new webpack.DefinePlugin({
-    'process.env': {
-       GOOGLEMAPSAPIKEY: process.env.GOOGLEMAPSAPIKEY
-    }
-  })
-});
 
 module.exports = config;
