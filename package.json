@@ -33,6 +33,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --content-base public/",
+    "start": "webpack-dev-server --content-base public/",
     "build": "node_modules/.bin/webpack -d"
   }
 }
