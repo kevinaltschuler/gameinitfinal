@@ -1,6 +1,6 @@
 import React from 'react';
 try {
-	import mapAPIkey from '../../CREDS.js';
+	const mapAPIkey = require('../../CREDS.js');
 } catch (ex) {
     console.log(ex, 'no creds file so using env var');
 }
