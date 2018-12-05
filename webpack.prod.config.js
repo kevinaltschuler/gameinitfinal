@@ -18,4 +18,12 @@ config.plugins.push(
   })
 );
 
+config.plugins.push({
+  new webpack.DefinePlugin({
+    'process.env': {
+       GOOGLEMAPSAPIKEY: process.env.GOOGLEMAPSAPIKEY
+    }
+  })
+});
+
 module.exports = config;
