@@ -21,10 +21,12 @@ class MapView extends React.Component {
 	        return <div>geolocation is not supported by this browser.</div>
 	    }
 
+	    const key = mapAPIkey || process.env.GOOGLEMAPSAPIKEY;
+
 	  	return (
 		  	<div style={{ height: '100vh', width: '100%' }}>
 			    <GoogleMapReact
-			      bootstrapURLKeys={{ key: mapAPIkey || process.env.GOOGLEMAPSAPIKEY }}
+			      bootstrapURLKeys={{ key }}
 			      center={this.props.center}
 			      zoom={this.props.zoom}
 			      options={{styles: styles}}
